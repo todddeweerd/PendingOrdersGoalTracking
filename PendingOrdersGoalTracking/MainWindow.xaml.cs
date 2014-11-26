@@ -20,7 +20,14 @@ namespace PendingOrdersGoalTracking
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("There was a problem initializing the application. " + ex.Message);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -37,20 +44,20 @@ namespace PendingOrdersGoalTracking
                     {
                         model = new MainViewModel();
                         // Test data
-                        model.SalesGoal = 300;
-                        model.DaysInMonth = 20;
-                        model.DaysComplete = 13;
-                        model.CurrentSales = 100;
-                        model.PendingSales.Add(new PendingSale() { Customer = "Customer A", Amount = 20 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "Customer B", Amount = 2 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "Customer C", Amount = 7 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
-                        model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.SalesGoal = 300;
+                        //model.DaysInMonth = 20;
+                        //model.DaysComplete = 13;
+                        //model.CurrentSales = 100;
+                        //model.PendingSales.Add(new PendingSale() { Customer = "Customer A", Amount = 20 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "Customer B", Amount = 2 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "Customer C", Amount = 7 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                        //model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
                     }
                 }
                 catch (Exception ex)
