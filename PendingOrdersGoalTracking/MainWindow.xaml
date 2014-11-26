@@ -1,8 +1,6 @@
 ﻿<Window x:Class="PendingOrdersGoalTracking.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-        xmlns:chartp="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         xmlns:common="clr-namespace:PendingOrdersGoalTracking"
         Title="Pending Orders &amp; Goals" Height="975" Width="1024" Loaded="Window_Loaded" Icon="Resources/logo.ico" WindowStartupLocation="CenterScreen">
     <Window.Resources>
