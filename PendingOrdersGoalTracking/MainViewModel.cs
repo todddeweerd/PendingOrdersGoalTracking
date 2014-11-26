@@ -234,6 +234,8 @@ namespace PendingOrdersGoalTracking
             OnPropertyChanged("CurrentSales");
             OnPropertyChanged("ProjectedSales");
             OnPropertyChanged("ProjectedWithPending");
+            OnPropertyChanged("ProjectedSalesPercent");
+            OnPropertyChanged("ProjectedSalesPercentString");
             OnPropertyChanged("ProjectedAndPendingSalesPercent");
             OnPropertyChanged("ProjectedAndPendingSalesPercentString");
             OnPropertyChanged("CurrentSalesPercent");
@@ -244,22 +246,34 @@ namespace PendingOrdersGoalTracking
         {
             MainViewModel model;
             DataContractSerializer serializer = new DataContractSerializer(typeof(MainViewModel));
-            using (FileStream fs = File.Open(Settings.Default.SalesFileName, FileMode.Open))
+            string fileName = GetSalesFileName();
+            if (File.Exists(fileName))
             {
-                model = serializer.ReadObject(fs) as MainViewModel;
-                if (model == null)
-                    model = new MainViewModel();
+                using (FileStream fs = File.Open(fileName, FileMode.Open))
+                {
+                    model = serializer.ReadObject(fs) as MainViewModel;
+                    if (model == null)
+                        model = new MainViewModel();
+                }
             }
+            else
+                model = new MainViewModel();
             return model;
         }
 
         public static void SaveSalesData(MainViewModel model)
         {
             DataContractSerializer serializer = new DataContractSerializer(typeof(MainViewModel));
-            using (FileStream fs = File.Open(Settings.Default.SalesFileName, FileMode.Create))
+            using (FileStream fs = File.Open(GetSalesFileName(), FileMode.Create))
             {
                 serializer.WriteObject(fs, model);
             }
+        }
+
+        private static string GetSalesFileName()
+        {
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(appDataFolder, Settings.Default.SalesFileName);
         }
     }
 
