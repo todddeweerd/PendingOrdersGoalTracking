@@ -34,34 +34,40 @@ namespace PendingOrdersGoalTracking
         {
             try
             {
-                MainViewModel model;
-
-                try
-                {
-                    model = MainViewModel.LoadSalesData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("Unable to load the sales data from the file {0}. {1}", Settings.Default.SalesFileName, ex.ToString()));
-                    model = new MainViewModel();
-                    // Test data
-                    //model.SalesGoal = 300;
-                    //model.DaysInMonth = 20;
-                    //model.DaysComplete = 13;
-                    //model.CurrentSales = 100;
-                    //model.PendingSales.Add(new PendingSale() { Customer = "Customer A", Amount = 20 });
-                    //model.PendingSales.Add(new PendingSale() { Customer = "Customer B", Amount = 2 });
-                    //model.PendingSales.Add(new PendingSale() { Customer = "Customer C", Amount = 7 });
-                }
-                // Default to 10
-                while (model.PendingSales.Count < 10)
-                    model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+                MainViewModel model = LoadMainViewModel();
                 DataContext = model;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(string.Format("Unable to load the sales data. {0}", ex.ToString()));
             }
+        }
+
+        private MainViewModel LoadMainViewModel()
+        {
+            MainViewModel model;
+
+            try
+            {
+                model = MainViewModel.LoadSalesData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unable to load the sales data from the file {0}. {1}", Settings.Default.SalesFileName, ex.ToString()));
+                model = new MainViewModel();
+                // Test data
+                //model.SalesGoal = 300;
+                //model.DaysInMonth = 20;
+                //model.DaysComplete = 13;
+                //model.CurrentSales = 100;
+                //model.PendingSales.Add(new PendingSale() { Customer = "Customer A", Amount = 20 });
+                //model.PendingSales.Add(new PendingSale() { Customer = "Customer B", Amount = 2 });
+                //model.PendingSales.Add(new PendingSale() { Customer = "Customer C", Amount = 7 });
+            }
+            // Default to 10
+            while (model.PendingSales.Count < 10)
+                model.PendingSales.Add(new PendingSale() { Customer = "", Amount = 0 });
+            return model;
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
@@ -81,7 +87,7 @@ namespace PendingOrdersGoalTracking
         {
             try
             {
-                MainViewModel model = MainViewModel.LoadSalesData();
+                MainViewModel model = LoadMainViewModel();
                 DataContext = model;
             }
             catch (Exception ex)

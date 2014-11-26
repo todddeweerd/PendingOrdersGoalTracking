@@ -12,6 +12,7 @@
              B="0" />
         <Color x:Key="SuperiorBlueColor">#FF2A79BE</Color>
         <SolidColorBrush x:Key="SuperiorBlueBrush">#FF2A79BE</SolidColorBrush>
+        <SolidColorBrush x:Key="WhiteBrush">White</SolidColorBrush>
         <!-- Define template for thermometer progress bar -->
         <ControlTemplate x:Key="templateThermometer"
                          TargetType="{x:Type ProgressBar}">
@@ -118,7 +119,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.Column="0" Grid.Row="0" Source="Resources/logo.png" MaxHeight="125" MaxWidth="111"  />
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Span Foreground="{StaticResource SuperiorBlueBrush}">GOALS</Span><TextBlock Text="{Binding CurrentMonth, Mode=OneWay}"/>
         </TextBlock>
         <ScrollViewer Grid.Row="1" Grid.Column="0" Margin="5" VerticalScrollBarVisibility="Auto">
@@ -261,7 +262,7 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="0" Text="{Binding Path=Customer, Mode=TwoWay}" Background="{StaticResource SuperiorBlueBrush}" Foreground="White" />
-                            <TextBox Grid.Column="1" Text="{Binding Path=FormattedAmount, Mode=TwoWay}" Background="{StaticResource SuperiorBlueBrush}" Foreground="White"/>
+                            <TextBox Name="amount" Grid.Column="1" Text="{Binding Path=FormattedAmount, Mode=TwoWay}" Background="{StaticResource SuperiorBlueBrush}" Foreground="White"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -270,7 +271,8 @@
                 <Button HorizontalAlignment="Left" Height="30" Width="200" Margin="5" Click="buttonSave_Click">Save</Button>
                 <Button HorizontalAlignment="Left" Height="30" Width="200" Margin="5" Click="buttonReload_Click">Reload</Button>
             </StackPanel>
-            <TextBlock  Grid.Row="3" Grid.Column="0" FontSize="20" Foreground="White" HorizontalAlignment="Right" Text="Total:  "/>
+            <TextBlock  Grid.Row="3" Grid.Column="0" FontSize="20" Foreground="White" HorizontalAlignment="Right" Text="Total:  ">
+            </TextBlock>
             <TextBlock  Grid.Row="3" Grid.Column="1" FontSize="20" Foreground="White" Text="{Binding PendingSalesTotal}"/>
         </Grid>
     </Grid>

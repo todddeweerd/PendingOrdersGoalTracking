@@ -15,6 +15,8 @@ namespace PendingOrdersGoalTracking
     [Serializable]
     class MainViewModel : INotifyPropertyChanged
     {
+        DailyTimer _dayTimer;
+
         [DataMember(Name="PendingSales")]
         ObservableCollection<PendingSale> _pendingSales;
 
@@ -40,6 +42,13 @@ namespace PendingOrdersGoalTracking
         {
             _pendingSales = new ObservableCollection<PendingSale>();
             _pendingSales.CollectionChanged += _pendingSales_CollectionChanged;
+            _dayTimer = new DailyTimer();
+            _dayTimer.NewDay += _dayTimer_NewDay;
+        }
+
+        void _dayTimer_NewDay(DateTime Time)
+        {
+            OnPropertyChanged("CurrentMonth");
         }  
 
         void _pendingSales_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -86,6 +95,7 @@ namespace PendingOrdersGoalTracking
                 _daysInMonth = value;
                 OnPropertyChanged("DaysInMonth");
                 OnPropertyChanged("DaysLeft");
+                NotifySalesChanged();
             }
         }
 
@@ -99,6 +109,7 @@ namespace PendingOrdersGoalTracking
                 _daysComplete = value;
                 OnPropertyChanged("DaysComplete");
                 OnPropertyChanged("DaysLeft");
+                NotifySalesChanged();
             }
         }
 
@@ -233,6 +244,7 @@ namespace PendingOrdersGoalTracking
             OnPropertyChanged("SalesGoal");
             OnPropertyChanged("CurrentSales");
             OnPropertyChanged("ProjectedSales");
+            OnPropertyChanged("PendingSalesTotal");
             OnPropertyChanged("ProjectedWithPending");
             OnPropertyChanged("ProjectedSalesPercent");
             OnPropertyChanged("ProjectedSalesPercentString");
