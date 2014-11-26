@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// AxisItem.cs by Charles Petzold, September 2009
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
-namespace PendingOrdersGoalTracking
+namespace LineChartLib
 {
     public class AxisItem : INotifyPropertyChanged
     {

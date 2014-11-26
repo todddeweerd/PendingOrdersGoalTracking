@@ -50,7 +50,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- This border displays the stem -->
-                    <Border Grid.Column="1" BorderBrush="SteelBlue" 
+                    <Border Grid.Column="1" BorderBrush="SteelBlue" Background="Black"
                             BorderThickness="3 3 3 0"
                             CornerRadius="6 6 0 0" >
 
@@ -239,7 +239,7 @@
                 <Span FontSize="20">- Peter Drucker</Span>
                 </TextBlock>
             </StackPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Pending Quotes" Foreground="White" FontSize="24" Margin="5,0,0,5" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Pending Quotes" Foreground="White" FontSize="24" Margin="5,-2,0,5" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Amount" Foreground="White" FontSize="24" />
             <ListBox x:Name="listPendingOrders"
                      Margin="5"
@@ -249,7 +249,8 @@
                     HorizontalContentAlignment="Stretch" 
                     BorderThickness="0"
                     KeyboardNavigation.TabNavigation="Cycle" 
-                    Background="{StaticResource SuperiorBlueBrush}" Foreground="White">
+                    Background="{StaticResource SuperiorBlueBrush}" Foreground="White"
+                    FontSize="16">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="IsTabStop" Value="False"/>
