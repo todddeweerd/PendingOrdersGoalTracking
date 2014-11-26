@@ -6,11 +6,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace PendingOrdersGoalTracking
 {
     [DataContract]
+    [Serializable]
     class MainViewModel : INotifyPropertyChanged
     {
         [DataMember(Name="PendingSales")]
@@ -35,7 +37,7 @@ namespace PendingOrdersGoalTracking
         }
 
         private void Initialize()  
-        {  
+        {
             _pendingSales = new ObservableCollection<PendingSale>();
             _pendingSales.CollectionChanged += _pendingSales_CollectionChanged;
         }  
@@ -63,6 +65,14 @@ namespace PendingOrdersGoalTracking
                 //    , BitmapCreateOptions.None
                 //    , BitmapCacheOption.Default);
                 //return ibd.Frames[0];
+            }
+        }
+
+        public string CurrentMonth
+        {
+            get
+            {
+                return string.Format("  {0:MMMM yyyy}", DateTime.Today);
             }
         }
 
