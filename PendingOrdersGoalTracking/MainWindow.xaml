@@ -235,7 +235,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
                 <TextBlock Foreground="White">
-                    <Span FontSize="36">&quot;The Best Way To Predict The Future Is To Create It.&quot;" </Span>
+                    <Span FontSize="36">&quot;The Best Way To Predict The Future Is To Create It.&quot;</Span>
                 <Span FontSize="20">- Peter Drucker</Span>
                 </TextBlock>
             </StackPanel>
