@@ -123,14 +123,9 @@
             <Span Foreground="{StaticResource SuperiorBlueBrush}">GOALS</Span><TextBlock Text="{Binding CurrentMonth, Mode=OneWay}"/>
         </TextBlock>
         <ScrollViewer Grid.Row="1" Grid.Column="0" Margin="5" VerticalScrollBarVisibility="Auto">
-            <Grid Width="189" >
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
@@ -146,18 +141,29 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Goal" FontSize="24" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
                 <TextBox Grid.Row="1" Grid.Column="0" Name="textGoal" Text="{Binding Path=SalesGoal}"  FontSize="14"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="Days In Month" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="3" Grid.Column="0" Name="textDaysInMonth" Text="{Binding Path=DaysInMonth}"  FontSize="14"/>
-                <Label Grid.Row="4" Grid.Column="0" Content="Days Done" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="5" Grid.Column="0" Name="textDaysDone" Text="{Binding Path=DaysComplete}"  FontSize="14"/>
-                <Label Grid.Row="6" Grid.Column="0" Content="Days Left" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="7" Grid.Column="0" Name="textDaysLeft" Text="{Binding Path=DaysLeft, Mode=OneWay}" FontSize="14" IsReadOnly="True"/>
-                <Label Grid.Row="8" Grid.Column="0" Content="Current Sales" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="9" Grid.Column="0" Name="textCurrentSales" Text="{Binding Path=CurrentSales}"  FontSize="14"/>
-                <Label Grid.Row="10" Grid.Column="0" Content="Projected Sales" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="11" Grid.Column="0" Name="textProjectedSales" Text="{Binding Path=ProjectedSales, Mode=OneWay, StringFormat=0.00}"  FontSize="14" IsReadOnly="True"/>
-                <Label Grid.Row="12" Grid.Column="0" Content="Projected with Pending Sales" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
-                <TextBox Grid.Row="13" Grid.Column="0" Name="textProjectedWithPending" Text="{Binding Path=ProjectedWithPending, Mode=OneWay, StringFormat=0.00}"  FontSize="14" IsReadOnly="True" Height="40"/>
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Days in Month" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                    <TextBox Grid.Row="1" Grid.Column="0" Name="textDaysInMonth" Text="{Binding Path=DaysInMonth}"  FontSize="14"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Done" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="textDaysDone" Text="{Binding Path=DaysComplete}"  FontSize="14"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Left" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                    <TextBox Grid.Row="1" Grid.Column="2" Name="textDaysLeft" Text="{Binding Path=DaysLeft, Mode=OneWay}" FontSize="14" IsReadOnly="True"/>
+                </Grid>
+                <Label Grid.Row="4" Grid.Column="0" Content="Current Sales" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                <TextBox Grid.Row="5" Grid.Column="0" Name="textCurrentSales" Text="{Binding Path=CurrentSales}"  FontSize="14"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="Projected Sales" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                <TextBox Grid.Row="7" Grid.Column="0" Name="textProjectedSales" Text="{Binding Path=ProjectedSales, Mode=OneWay, StringFormat=0.00}"  FontSize="14" IsReadOnly="True"/>
+                <Label Grid.Row="8" Grid.Column="0" Content="Projected with Quotes" FontSize="16" Foreground="{StaticResource SuperiorBlueBrush}" FontWeight="Bold" />
+                <TextBox Grid.Row="9" Grid.Column="0" Name="textProjectedWithPending" Text="{Binding Path=ProjectedWithPending, Mode=OneWay, StringFormat=0.00}"  FontSize="14" IsReadOnly="True" Height="40"/>
             </Grid>
         </ScrollViewer>
         <Grid Grid.Row="1" Grid.Column="1" Name="currentSalesGrid">
@@ -231,13 +237,11 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
-                <TextBlock Foreground="White">
-                    <Span FontSize="36">&quot;The Best Way To Predict The Future Is To Create It.&quot;</Span>
-                <Span FontSize="20">- Peter Drucker</Span>
-                </TextBlock>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal">
+                <TextBox Foreground="White" FontSize="36" Text="{Binding Path=QuoteText}" Background="{StaticResource SuperiorBlueBrush}" BorderThickness="0"/>
+                <TextBox Foreground="White" FontSize="20" Text="{Binding Path=QuoteReference}" Background="{StaticResource SuperiorBlueBrush}" BorderThickness="0" VerticalAlignment="Bottom"/>
             </StackPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Pending Quotes" Foreground="White" FontSize="24" Margin="5,-2,0,5" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Pending Quotes"  Foreground="White" FontSize="24" Margin="5,-2,0,5" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Amount" Foreground="White" FontSize="24" />
             <ListBox x:Name="listPendingOrders"
                      Margin="5"

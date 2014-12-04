@@ -44,6 +44,12 @@ namespace PendingOrdersGoalTracking
             _pendingSales.CollectionChanged += _pendingSales_CollectionChanged;
             _dayTimer = new DailyTimer();
             _dayTimer.NewDay += _dayTimer_NewDay;
+            if (string.IsNullOrEmpty(QuoteText)|| QuoteText.Trim().Length == 0)
+            {
+                QuoteText = "\"The Best Way To Predict The Future Is To Create It.\"";
+                QuoteReference = "- Peter Drucker";
+            }
+
         }
 
         void _dayTimer_NewDay(DateTime Time)
@@ -83,6 +89,20 @@ namespace PendingOrdersGoalTracking
             {
                 return string.Format("  {0:MMMM yyyy}", DateTime.Today);
             }
+        }
+
+        [DataMember]
+        public string QuoteText
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string QuoteReference
+        {
+            get;
+            set;
         }
 
         int _daysInMonth;
@@ -204,7 +224,7 @@ namespace PendingOrdersGoalTracking
             {
                 if (SalesGoal == 0)
                     return 0;
-                return (ProjectedSales + PendingSalesTotal) / SalesGoal * 100;
+                return ProjectedWithPending / SalesGoal * 100;
             }
         }
 
